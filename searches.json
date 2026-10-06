@@ -1,0 +1,29 @@
+{
+  "baseURL": "https://hamleys.in/",
+  "sale": {
+    "menu": "Sale",
+    "artAndCraft": "Art & Craft",
+    "under999": "Under 999",
+    "ageThreeToFive": "3 to 5 Years",
+    "clearance": "Clearance Sale",
+    "shopAll": "Shop All"
+  },
+  "returnGifts": {
+    "menu": "Return Gifts",
+    "under500": "Under 500",
+    "under1000": "Under 1000",
+    "under1500": "Under 1500",
+    "shopAll": "Shop All"
+  },
+  "header": {
+    "login": "Login",
+    "wishlist": "Wishlist",
+    "myBag": "My bag"
+  },
+  "routes": {
+    "sale": "collection/sale",
+    "login": "auth/login",
+    "wishlist": "wishlist",
+    "bag": "cart/bag"
+  }
+}

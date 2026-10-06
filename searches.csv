@@ -1,0 +1,13 @@
+testCase,menu,subMenu,expectedUrl
+TC01,Sale,Art & Craft,art--craft
+TC02,Sale,Under 999,under-1000
+TC03,Sale,3 to 5 Years,3-to-5-years
+TC04,Sale,Clearance Sale,clearance-sale
+TC05,Sale,Shop All,collection/sale
+TC07,Return Gifts,Under 500,under-500
+TC08,Return Gifts,Under 1000,under-1000
+TC09,Return Gifts,Under 1500,under-1500
+TC10,Return Gifts,Shop All,buy-return-gift-for-kids-online
+TC11,Login,Login,auth/login
+TC15,Wishlist,Wishlist,wishlist
+TC18,My Bag,My Bag,cart/bag

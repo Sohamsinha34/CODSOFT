@@ -1,2 +1,0 @@
-# CODSOFT
-for python internship

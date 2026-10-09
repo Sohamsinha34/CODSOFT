@@ -1,0 +1,124 @@
+import { Page, expect, Locator } from '@playwright/test';
+import Logger from '../utils/Logger';
+import { Keywords } from '../utils/keywords';
+import { TestCase17Locators } from '../uistore/TestCase17Locators';
+
+export class TestCase17Page {
+   private readonly keywords: Keywords;
+
+   constructor(
+      private readonly page: Page
+   ) {
+      this.keywords = new Keywords(page);
+   }
+
+   /**
+    * Author Name : Abesh Bhattacharya
+    * Method Name : execute
+    * Description : Executes Premium Gifts product journey and validates checkout flow
+    * Parameters : None
+    * Return Type : Promise<void>
+    */
+   public async execute(): Promise<void> {
+      try {
+         Logger.info(
+            'Starting Test Case 17 execution'
+         );
+
+         Logger.info(
+            'Navigating to Premium Gifts collection page'
+         );
+
+         await this.page.goto(
+            '/collection/premium-gifts'
+         );
+
+         const currentUrl: string =
+            this.page.url();
+
+         Logger.info(
+            `Current URL : ${currentUrl}`
+         );
+
+         expect(
+            currentUrl.length
+         ).toBeGreaterThan(
+            0
+         );
+
+         Logger.info(
+            'Opening first available product'
+         );
+
+         await this.keywords.openFirstProduct();
+
+         Logger.info(
+            'Verifying product image'
+         );
+
+         await this.keywords.verifyProductImage();
+
+         const heading: Locator =
+            TestCase17Locators.firstVisibleHeading(
+               this.page
+            );
+
+         if (
+            await heading.count() > 0
+         ) {
+            Logger.info(
+               'Verifying product heading'
+            );
+
+            await expect(
+               heading
+            ).toBeVisible();
+
+            Logger.info(
+               'Product heading verified successfully'
+            );
+         }
+
+         Logger.info(
+            'Opening Product Details section'
+         );
+
+         await this.keywords.openProductDetails();
+
+         Logger.info(
+            'Checking pincode availability'
+         );
+
+         await this.keywords.checkPincode();
+
+         Logger.info(
+            'Adding product to bag'
+         );
+
+         await this.keywords.addToBag();
+
+         Logger.info(
+            'Opening shopping bag'
+         );
+
+         await this.keywords.openBag();
+
+         Logger.info(
+            'Proceeding to checkout'
+         );
+
+         await this.keywords.checkout();
+
+         Logger.info(
+            'Test Case 17 executed successfully'
+         );
+      }
+      catch (error) {
+         Logger.error(
+            `Failed to execute Test Case 17 : ${error}`
+         );
+
+         throw error;
+      }
+   }
+}

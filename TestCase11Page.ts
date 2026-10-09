@@ -1,0 +1,113 @@
+import { Page, expect, Locator } from '@playwright/test';
+import Logger from '../utils/Logger';
+import { Keywords } from '../utils/keywords';
+import { TestCase11Locators } from '../uistore/TestCase11Locators';
+
+export class TestCase11Page {
+   private readonly keywords: Keywords;
+
+   constructor(
+      private readonly page: Page
+   ) {
+      this.keywords = new Keywords(page);
+   }
+
+   /**
+    * Author Name : Abesh Bhattacharya
+    * Method Name : execute
+    * Description : Executes Pokemon product journey and validates checkout flow
+    * Parameters : None
+    * Return Type : Promise<void>
+    */
+   public async execute(): Promise<void> {
+      try {
+         Logger.info(
+            'Starting Test Case 11 execution'
+         );
+
+         Logger.info(
+            'Navigating to Pokemon collection page'
+         );
+
+         await this.page.goto(
+            '/products?brand=pokemon'
+         );
+
+         await expect(this.page).toHaveURL(
+            /pokemon/i
+         );
+
+         Logger.info(
+            'Pokemon collection page verified successfully'
+         );
+
+         Logger.info(
+            'Opening first available product'
+         );
+
+         await this.keywords.openFirstProduct();
+
+         const title: Locator =
+            TestCase11Locators.pokemonTitle(
+               this.page
+            );
+
+         Logger.info(
+            'Verifying Pokemon product title'
+         );
+
+         await expect(title).toBeVisible();
+
+         Logger.info(
+            'Pokemon product title verified successfully'
+         );
+
+         Logger.info(
+            'Opening Product Details section'
+         );
+
+         await this.keywords.openProductDetails();
+
+         Logger.info(
+            'Verifying Specifications section'
+         );
+
+         await this.keywords.verifySpecifications();
+
+         Logger.info(
+            'Checking pincode availability'
+         );
+
+         await this.keywords.checkPincode();
+
+         Logger.info(
+            'Adding product to bag'
+         );
+
+         await this.keywords.addToBag();
+
+         Logger.info(
+            'Opening shopping bag'
+         );
+
+         await this.keywords.openBag();
+
+         Logger.info(
+            'Proceeding to checkout'
+         );
+
+         await this.keywords.checkout();
+
+         Logger.info(
+            'Test Case 11 executed successfully'
+         );
+      }
+      catch (error) {
+         Logger.error(
+            `Failed to execute Test Case 11 : ${error}`
+         );
+
+         throw error;
+      }
+   }
+}
